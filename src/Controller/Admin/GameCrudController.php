@@ -9,6 +9,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class GameCrudController extends AbstractCrudController
 {
@@ -19,6 +22,8 @@ class GameCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        $mappingsParams = $this->getParameter('vich_uploader.mappings');
+        $gamesImagePath =  $mappingsParams['games']['uri_prefix'];
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('name'),
@@ -27,6 +32,13 @@ class GameCrudController extends AbstractCrudController
             AssociationField::new('editor')->autocomplete(),
             AssociationField::new('genre')->autocomplete(),
 
+            ImageField::new('imageName')
+            ->setBasePath($gamesImagePath)
+            ->hideOnForm(),
+
+            TextareaField::new('imageFile')
+            ->setFormType(VichImageType::class)
+            ->hideOnIndex(),
 
         ];
     }

@@ -41,6 +41,7 @@ class Game
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    
 
     /**
      * @var Collection<int, Genre>
@@ -50,6 +51,8 @@ class Game
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $releaseDate = null;
+
+    
 
     /**
      * @var Collection<int, Review>
