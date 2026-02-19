@@ -56,4 +56,7 @@
             } %}
 		</div>
 	</section>
+	<turbo-frame id="review-form" src="{{ path('app_review_form', { id: game.id }) }}">
+		Chargement du formulaire...
+	</turbo-frame>
 {% endblock %}
