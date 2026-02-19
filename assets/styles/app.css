@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+
 body {
     background-color: skyblue;
+}
+
+.img-class {
+    width: 200px;
 }
