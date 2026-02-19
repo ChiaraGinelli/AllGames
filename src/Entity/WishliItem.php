@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\WishliItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: WishliItemRepository::class)]
 class WishliItem
 {
@@ -21,6 +22,17 @@ class WishliItem
 
     #[ORM\ManyToOne]
     private ?Game $game = null;
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): static
+    {
+        $this->createdAt = new \DateTimeImmutable();
+
+
+        return $this;
+    }
+
+
 
     public function getId(): ?int
     {
